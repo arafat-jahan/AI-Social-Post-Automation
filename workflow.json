@@ -1,0 +1,326 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        80,
+        256
+      ],
+      "id": "8c023a5a-36ad-43ed-be90-2ed314ecdf62",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "n9DFlcWSoqnrbuGz",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "mysession"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        240,
+        256
+      ],
+      "id": "88ebab52-bbbb-48c8-923f-ca41ba139484",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "html_content": "=<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\"> <title>NEXUS AI — Social Post Card</title> <style>   *, *::before, *::after {     box-sizing: border-box;     margin: 0;     padding: 0;   }    body {     background: #0a0e1a;     display: flex;     align-items: center;     justify-content: center;     width: 1080px;     height: 1080px;     font-family: Arial, Helvetica, sans-serif;     overflow: hidden;   }    .card {     position: relative;     width: 1080px;     height: 1080px;     overflow: hidden;     background: linear-gradient(135deg, #0a0e1a 0%, #0f1628 40%, #0d1535 70%, #0a1220 100%);   }    .glow {     position: absolute;     border-radius: 50%;     filter: blur(100px);     pointer-events: none;   }   .glow-1 {     width: 600px; height: 600px;     top: -180px; left: -160px;     background: radial-gradient(circle, rgba(56,100,240,0.18) 0%, transparent 70%);   }   .glow-2 {     width: 500px; height: 500px;     bottom: -120px; right: -100px;     background: radial-gradient(circle, rgba(100,60,220,0.16) 0%, transparent 70%);   }   .glow-3 {     width: 320px; height: 320px;     top: 50%; left: 50%;     transform: translate(-50%, -50%);     background: radial-gradient(circle, rgba(30,80,200,0.10) 0%, transparent 70%);   }    .grid-overlay {     position: absolute;     inset: 0;     background-image:       linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),       linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);     background-size: 54px 54px;     pointer-events: none;   }    .top-accent {     position: absolute;     top: 0; left: 0; right: 0;     height: 3px;     background: linear-gradient(90deg,       transparent 0%,       rgba(56,120,255,0.6) 20%,       rgba(130,80,255,0.8) 50%,       rgba(56,180,255,0.6) 80%,       transparent 100%);   }    .logo-pill {     position: absolute;     top: 48px; right: 52px;     display: flex;     align-items: center;     gap: 10px;     padding: 12px 22px;     background: rgba(255,255,255,0.06);     border: 1px solid rgba(255,255,255,0.18);     border-radius: 50px;     backdrop-filter: blur(12px);   }    .logo-icon { width: 28px; height: 28px; flex-shrink: 0; }    .logo-text {     font-size: 17px;     font-weight: 700;     letter-spacing: 0.14em;     color: #ffffff;     text-transform: uppercase;   }   .logo-text span { color: rgba(120,160,255,0.95); }    .tag {     position: absolute;     top: 44px; left: 52px;     font-size: 11px;     font-weight: 700;     letter-spacing: 0.22em;     color: rgba(100,160,255,0.9);     text-transform: uppercase;   }    .divider {     position: absolute;     left: 52px; right: 52px;     height: 1px;     background: linear-gradient(90deg,       rgba(100,140,255,0.4) 0%,       rgba(180,130,255,0.25) 50%,       transparent 100%);   }   .divider-top    { top: 140px; }   .divider-bottom { bottom: 130px; }    /* ── Topic Headline — lower middle ── */   .topic-block {     position: absolute;     left: 52px; right: 52px;     top: 180px;     padding: 0 12px;   }    .eyebrow {     font-size: 13px;     font-weight: 700;     letter-spacing: 0.18em;     text-transform: uppercase;     color: rgba(100,160,255,0.85);     margin-bottom: 20px;   }    .headline {     font-size: 62px;     font-weight: 700;     line-height: 1.1;     color: #ffffff;     letter-spacing: -0.01em;   }    /* ── Dynamic AI body copy ── */   .body-container {     position: absolute;     left: 52px; right: 52px;     top: 430px; bottom: 150px;     padding: 0 12px;     overflow: hidden;   }    .body-copy {     font-size: 24px;     font-weight: 400;     line-height: 1.6;     color: rgba(200,215,245,0.88);     letter-spacing: 0.01em;     word-break: break-word;     hyphens: auto;   }    .bottom-bar {     position: absolute;     bottom: 48px; left: 52px; right: 52px;     display: flex;     align-items: center;     justify-content: space-between;   }    .stat-group { display: flex; align-items: center; gap: 36px; }   .stat-item  { display: flex; flex-direction: column; gap: 3px; }    .stat-value {     font-size: 20px; font-weight: 700;     color: #ffffff; letter-spacing: -0.01em;   }   .stat-label {     font-size: 11px; font-weight: 400;     letter-spacing: 0.1em; text-transform: uppercase;     color: rgba(150,175,220,0.65);   }    .cta-pill {     display: flex; align-items: center; gap: 8px;     padding: 13px 26px;     background: linear-gradient(135deg, rgba(70,120,255,0.3) 0%, rgba(130,80,255,0.3) 100%);     border: 1px solid rgba(120,160,255,0.4);     border-radius: 50px;     font-size: 13px; font-weight: 700;     letter-spacing: 0.1em; text-transform: uppercase;     color: rgba(180,210,255,0.95);   }    .corner-accent {     position: absolute;     bottom: 0; left: 0;     width: 220px; height: 220px;     pointer-events: none; overflow: hidden;   }   .corner-accent::before {     content: '';     position: absolute;     bottom: -80px; left: -80px;     width: 200px; height: 200px;     border-radius: 50%;     background: radial-gradient(circle, rgba(60,110,255,0.12) 0%, transparent 70%);   } </style> </head> <body> <div class=\"card\">    <div class=\"glow glow-1\"></div>   <div class=\"glow glow-2\"></div>   <div class=\"glow glow-3\"></div>   <div class=\"grid-overlay\"></div>   <div class=\"top-accent\"></div>   <div class=\"corner-accent\"></div>    <!-- NEXUS AI Logo — top right — STATIC / ALWAYS SAME -->   <div class=\"logo-pill\">     <svg class=\"logo-icon\" viewBox=\"0 0 28 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">       <circle cx=\"14\" cy=\"14\" r=\"13\" stroke=\"rgba(120,160,255,0.6)\" stroke-width=\"1.2\"/>       <circle cx=\"14\" cy=\"14\" r=\"4\" fill=\"rgba(100,150,255,0.9)\"/>       <line x1=\"14\" y1=\"1\" x2=\"14\" y2=\"7\" stroke=\"rgba(120,160,255,0.7)\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>       <line x1=\"14\" y1=\"21\" x2=\"14\" y2=\"27\" stroke=\"rgba(120,160,255,0.7)\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>       <line x1=\"1\" y1=\"14\" x2=\"7\" y2=\"14\" stroke=\"rgba(120,160,255,0.7)\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>       <line x1=\"21\" y1=\"14\" x2=\"27\" y2=\"14\" stroke=\"rgba(120,160,255,0.7)\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>       <line x1=\"4.5\" y1=\"4.5\" x2=\"8.8\" y2=\"8.8\" stroke=\"rgba(160,120,255,0.5)\" stroke-width=\"1.2\" stroke-linecap=\"round\"/>       <line x1=\"19.2\" y1=\"19.2\" x2=\"23.5\" y2=\"23.5\" stroke=\"rgba(160,120,255,0.5)\" stroke-width=\"1.2\" stroke-linecap=\"round\"/>       <line x1=\"23.5\" y1=\"4.5\" x2=\"19.2\" y2=\"8.8\" stroke=\"rgba(160,120,255,0.5)\" stroke-width=\"1.2\" stroke-linecap=\"round\"/>       <line x1=\"8.8\" y1=\"19.2\" x2=\"4.5\" y2=\"23.5\" stroke=\"rgba(160,120,255,0.5)\" stroke-width=\"1.2\" stroke-linecap=\"round\"/>     </svg>     <span class=\"logo-text\">NEXUS <span>AI</span></span>   </div>    <!-- Category tag — DYNAMIC from topic -->   <div class=\"tag\">{{ $('On form submission').item.json.topic }}</div>    <div class=\"divider divider-top\"></div>    <!-- Topic Headline — DYNAMIC -->   <div class=\"topic-block\">     <div class=\"eyebrow\">AI-Generated Post · {{ $('On form submission').item.json.Date }}</div>     <h1 class=\"headline\">{{ $('On form submission').item.json.topic }}</h1>   </div>    <!-- AI Generated Body Copy — DYNAMIC -->   <div class=\"body-container\">     <p class=\"body-copy\" id=\"bodyCopy\">{{ $('AI Agent').item.json.output }}</p>   </div>    <div class=\"divider divider-bottom\"></div>    <!-- Bottom bar — STATIC branding -->   <div class=\"bottom-bar\">     <div class=\"stat-group\">       <div class=\"stat-item\">         <span class=\"stat-value\">NEXUS AI</span>         <span class=\"stat-label\">Brand Post</span>       </div>       <div class=\"stat-item\">         <span class=\"stat-value\">{{ $('On form submission').item.json.Date }}</span>         <span class=\"stat-label\">Scheduled Date</span>       </div>     </div>     <div class=\"cta-pill\">Learn More →</div>   </div>  </div>  <script>   (function() {     var el = document.getElementById('bodyCopy');     var container = el.parentElement;     function autoScale() {       var maxH = container.clientHeight;       var size = 24;       el.style.fontSize = size + 'px';       while (el.scrollHeight > maxH && size > 12) {         size -= 0.5;         el.style.fontSize = size + 'px';       }     }     autoScale();   })(); </script> </body> </html>",
+        "viewPortHeight": 1080,
+        "response_format_html": "png"
+      },
+      "type": "n8n-nodes-htmlcsstoimage.htmlCssToImage",
+      "typeVersion": 1,
+      "position": [
+        560,
+        0
+      ],
+      "id": "ea24d8cb-51e2-479e-9932-cc424181367e",
+      "name": "HTML/CSS to Image",
+      "credentials": {
+        "htmlcsstoimgApi": {
+          "id": "WY3JJ8eECCoY3L0i",
+          "name": "HTML to Image account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Social Media Post Generator",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "topic"
+            },
+            {
+              "fieldLabel": "Date ",
+              "fieldType": "date"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d32c99f8-6458-4895-b495-c9e6e491a840",
+      "name": "On form submission",
+      "webhookId": "ac36ce3e-830a-4865-8aeb-8cc1234dbac4"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.image_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        768,
+        0
+      ],
+      "id": "853e52c4-354f-489c-b186-bb43902ce338",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "resume": "webhook",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1104,
+        0
+      ],
+      "id": "39a0f72c-ad79-417e-ba5e-5a6acfbd3880",
+      "name": "Wait",
+      "webhookId": "aaa9cc2b-574a-4a34-a306-1ccf72d3dd91"
+    },
+    {
+      "parameters": {
+        "sendTo": "arafatjahan.hira@gmail.com",
+        "subject": "={{ $('On form submission').item.json.topic }}",
+        "message": "=Hi, please review the AI post below.<br><br>\n\n<b>Topic:</b> {{ $('On form submission').item.json.topic }}<br>\n<b>Scheduled Date:</b> {{ $('On form submission').item.json.Date }}<br><br>\n\n<b>Generated Post Content:</b><br>\n{{ $('AI Agent').item.json.output }}<br><br>\n\n<hr>\n\n<p>Please choose one of the following actions:</p>\n\n✅ <a href=\"{{ $execution.resumeUrl }}?action=approve\">APPROVE & PUBLISH</a><br><br>\n❌ <a href=\"{{ $execution.resumeUrl }}?action=reject\">REJECT & DISCARD</a><br><br>\n✏️ <a href=\"{{ $execution.resumeUrl }}?action=edit\">REQUEST EDIT</a><br><br>\n\n<hr>\n<small>This email was sent automatically via n8n workflow.</small>",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        928,
+        0
+      ],
+      "id": "963b8ef4-4baf-44cb-a3ec-800f480661b1",
+      "name": "Send a message",
+      "webhookId": "13b2b1b4-1deb-4787-a808-52cb24314e79",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "6rJJMgaQnHASyvsF",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.site/fef7e35f-65fe-4d11-a6c4-edc0796fc16e",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "platform",
+              "value": "instagram"
+            },
+            {
+              "name": "post_content",
+              "value": "={{ $('AI Agent').item.json.output }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1248,
+        288
+      ],
+      "id": "f2ac5852-c6d2-450b-9ac4-9756ace93152",
+      "name": "Instagram Mock"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.site/b50e9874-11e6-46af-a7c5-0826dfffe61f",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "Post_Text",
+              "value": "={{ $('AI Agent').item.json.output }}"
+            },
+            {
+              "name": "Post_Image",
+              "value": "={{ $('HTTP Request1').item.json.image_url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1008,
+        304
+      ],
+      "id": "8d085cd7-0be0-469c-b2c0-e8dfc42099ed",
+      "name": "Facebook Mock"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a professional social media manager. \n\nTASK: Write a brand-aligned social media post about: {{ $json.topic }}\n\nSTRICT REQUIREMENTS:\n1. WORD COUNT: The post MUST be strictly between 90 and 150 words. This is a critical legal requirement for our brand.\n2. FORMAT: Use 2-3 clear paragraphs to make it professional and easy to read.\n3. EXCLUSIONS: \n   - DO NOT include the word count tag like [WORD COUNT: XX].\n   - DO NOT include the \"Scheduled for\" date inside the post content.\n   - DO NOT include any hashtags or emojis.\n   - DO NOT include introductory text like \"Here is your post\".\n\nOutput ONLY the post content itself.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "0d41268e-0569-4e17-94fe-385ada9cd68b",
+      "name": "AI Agent"
+    }
+  ],
+  "connections": {
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML/CSS to Image": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Facebook Mock",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Mock": {
+      "main": [
+        [
+          {
+            "node": "Instagram Mock",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "HTML/CSS to Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a116297de70ce3626eee2a1a66d4ada761753746060947b943daabd4f4e035a0"
+  }
+}
